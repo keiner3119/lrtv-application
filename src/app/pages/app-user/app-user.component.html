@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-xl-12">
+              <h3 class="d-inline-block">User</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="mt-5 mb-5" *ngIf="userList.length == 0">
+            <h3 class="text-center">No User Found</h3>
+          </div>
+          <div class="table-responsive" *ngIf="userList.length > 0">
+            <div>
+              <table class="table align-items-center">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>S No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Profile Image</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <tr *ngFor="let data of userList; let i = index">
+                    <td>{{((page-1) * limit) + (i+1)}}</td>
+                    <td>{{data.fullName}}</td>
+                    <td>{{data.email}}</td>
+                    <td>
+                      <img src="{{data.profileImage}}" class="image-circle" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 row" *ngIf="userList.length > 0">
+          <div class="col-2">
+            <select class="form-control height-40" [(ngModel)]="limit"
+            [ngModelOptions]="{standalone: true}" (ngModelChange)="limitChange(limit)">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="25">25</option>
+            <option [ngValue]="50">50</option>
+          </select>
+          </div>
+          <div class="col-10">
+            <ngb-pagination class="float-right" [(page)]="page" [pageSize]="limit" [collectionSize]="totalCount"
+            [maxSize]="2" [boundaryLinks]="true" (pageChange)="pageChange($event)">
+          </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

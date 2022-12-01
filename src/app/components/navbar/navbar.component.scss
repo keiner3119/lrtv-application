@@ -1,0 +1,9 @@
+a:hover{
+    color: #ffffff !important;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.dropdown-item:hover, .dropdown-item:focus{
+    background-color: #DA1921;
+}

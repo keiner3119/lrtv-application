@@ -1,0 +1,75 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-xl-12">
+              <h3 class="d-inline-block">Promoter Events</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="mt-5 mb-5" *ngIf="eventsList.length == 0">
+            <h3 class="text-center">No Events Found</h3>
+          </div>
+          <div class="table-responsive" *ngIf="eventsList.length > 0">
+            <div>
+              <table class="table align-items-center">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">S No.</th>
+                    <th scope="col">Event Name</th>
+                    <th scope="col">Thumbnail</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Featured</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <tr *ngFor="let data of eventsList; let i = index">
+                    <td>{{((page-1) * limit) + (i+1)}}</td>
+                    <td>{{data.eventName}}</td>
+                    <td>
+                      <img src="{{data.eventThumbnail}}" class="image-circle" />
+                    </td>
+                    <td>{{data.startTime | date:'dd MMM yyyy hh:mm a'}}</td>
+                    <td>{{data.endTime | date:'dd MMM yyyy hh:mm a'}}</td>
+                    <td>{{data.channelCategory?data.channelCategory.name:''}}</td>
+                    <td>
+                      <i class="fa fa-check-circle text-success" *ngIf="data.isFeatured"></i>
+                      <i class="fa fa-times-circle text-danger" *ngIf="!data.isFeatured"></i>
+                    </td>
+                    <td>
+                      <span
+                        [ngStyle]="{'font-weight':'700', 'padding':'5px', 'border-radius':'5px', 'background':eventStatusColor[data.status], 'color':'#fff'}">{{eventStatus[data.status]}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 row" *ngIf="eventsList.length > 0">
+          <div class="col-2">
+            <select class="form-control height-40" [(ngModel)]="limit" [ngModelOptions]="{standalone: true}"
+              (ngModelChange)="limitChange(limit)">
+              <option [ngValue]="5">5</option>
+              <option [ngValue]="10">10</option>
+              <option [ngValue]="25">25</option>
+              <option [ngValue]="50">50</option>
+            </select>
+          </div>
+          <div class="col-10">
+            <ngb-pagination class="float-right" [(page)]="page" [pageSize]="limit" [collectionSize]="totalCount"
+              [maxSize]="2" [boundaryLinks]="true" (pageChange)="pageChange($event)">
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

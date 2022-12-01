@@ -1,0 +1,38 @@
+<div class="header-lower">
+  <div class="container">
+    <div class="logo-header-inner">
+        <img width="120" height="100"
+          src="../../../assets/img/brand/logo.png" alt="Last Round" itemprop="logo"
+          srcset="../../../assets/img/brand/logo.png 400w, ../../../assets/img/brand/logo.png 300w"
+          sizes="(max-width: 400px) 100vw, 400px">
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="col-md-4 box" style="margin-left: 33.33%;">
+    <h4 class="pb-3 mt-3 mb-3" style="padding-top: 15px;text-align: center;">
+      <span style="border-bottom: 2px solid #DA1921;font-size: 1.5rem;
+      color: #524c4c;
+      font-family: 'Futura', sans-serif;">SUPER ADMIN</span>
+    </h4>
+
+    <form [formGroup]="adminForm" (ngSubmit)="OnSubmit(adminForm.value)">
+        
+      <div class="form-group">
+        <input type="text" name="username" placeholder="Email" formControlName="username"
+          class="form-control" required />
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" placeholder="Password" formControlName="password"
+          class="form-control" />
+      </div>
+
+      <div class="col-md-12" style="text-align: center;">
+        <button [disabled]="!adminForm.valid" class="btn btn-sm btn-secondary" type="submit">Sign In</button>
+      </div>  
+  </form>
+
+  </div>
+</div>

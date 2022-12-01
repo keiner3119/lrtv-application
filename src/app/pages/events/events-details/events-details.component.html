@@ -1,0 +1,155 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="card-header">
+          <h3 class="d-inline-block">Event Detail</h3>
+          <div class="card-body" *ngIf="eventView">
+            <div class="row">
+              <div class="col-xl-3 text-center">
+                <img src="{{eventView.eventThumbnail}}" class="image-circle" />
+              </div>
+              <div class="col-xl-9">
+                <div class="row">
+                  <div class="col-lg-5 mb-2">
+                    <h5 class="overview-title text-muted mb-2">Event Name</h5>
+                  </div>
+                  <div class="col-lg-7 mb-2">
+                    <h5 class="overview-title">{{eventView.eventName}}</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-5 mb-2">
+                    <h5 class="overview-title text-muted mb-2">Description</h5>
+                  </div>
+                  <div class="col-lg-7 mb-2">
+                    <h5 class="overview-title">{{eventView.description}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-10 mt-5">
+              <div class="row">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Start Date</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <h5 class="card-title mb-2 overview-title">{{eventView.startTime | date:'dd MMM yyyy hh:mm a'}}</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">End Date</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <h5 class="card-title overview-title mb-2 ">{{eventView.endTime | date:'dd MMM yyyy hh:mm a'}}</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Status</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <h5 class="card-title overview-title mb-2 "><span
+                      [ngStyle]="{'font-weight':'700', 'padding':'5px', 'border-radius':'5px', 'background':eventStatusColor[eventView.status], 'color':'#fff'}">{{eventStatus[eventView.status]}}</span>
+                  </h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Live Streaming Url</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <h5 class="card-title overview-title mb-2 ">{{eventView.liveStreamingUrl || '-'}}</h5>
+                </div>
+              </div>
+
+              <!-- <div class="row">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Stream key</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <h5 class="card-title overview-title mb-2 ">{{eventView.streamKey || '-'}}</h5>
+                </div>
+              </div> -->
+
+              <div class="row">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Channel Category</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <h5 class="card-title overview-title mb-2 ">{{eventView.channelCategory.name}}</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Event Location</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <h5 class="card-title overview-title mb-2 ">{{eventView.eventLocation}}</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Is Featured</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <h5 class="card-title overview-title mb-2 ">{{eventView.isFeatured?'Yes':'No'}}</h5>
+                </div>
+              </div>
+
+              <!-- <div class="row">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Advertisment</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <h5 class="card-title overview-title mb-2" *ngIf="eventView.advertisements.length == 0">None</h5>
+                  <h5 class="card-title overview-title mb-2"
+                    *ngFor="let adv of eventView.advertisements; let i = index">
+                    <div class="row">
+                      <div class="col-lg-6" style="position: relative;">
+                        <h5 style="position: absolute;transform: translateY(-50%);top: 50%;">{{(i+1)+".
+                          "+adv.advertisementName +", " + adv.startTime}}</h5>
+                      </div>
+                      <div class="col-lg-6">
+                        <video src="{{adv.advertisementUrl}}" height="200px" width="200px" controls></video>
+                      </div>
+                    </div>
+                  </h5>
+                </div>
+              </div> -->
+
+              <div class="row" *ngIf="eventView.section === 'finished'">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Event Video</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <!-- <video width="320" height="240" controls>
+                    <source src="{{eventView.recordedPreviousUrl}}" type="video/mp4">
+                  </video> -->
+                  <iframe src="{{eventView.recordedPreviousUrl}}" title="Previous Url" width="320" height="240" allowfullscreen>
+                  </iframe>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="eventView.section === 'live'">
+                <div class="col-lg-5 mb-2">
+                  <h5 class="card-title text-muted mb-2 overview-title ">Event Video</h5>
+                </div>
+                <div class="col-lg-7 mb-2">
+                  <iframe src="{{eventView.liveStreamingUrl}}" title="Live Url" width="320" height="240" allowfullscreen>
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

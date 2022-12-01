@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="card-header">
+          <h3 class="d-inline-block">Contact Us</h3>
+          <div class="card-body">
+            <div class="text-right mb-4" *ngIf="!editOption">
+              <button class="btn btn-sm btn-secondary" type="submit" (click)="editOption = !editOption">Edit</button>
+            </div>
+            <form>
+              <div class="row">
+                <div class="col-xl-12">
+                  <textarea class="form-control  mb-3" [(ngModel)]="newContact.content"
+                    [ngModelOptions]="{standalone: true}" style="resize: none;" [disabled]="!editOption"></textarea>
+                </div>
+              </div>
+              <div class="text-right" *ngIf="editOption">
+                <button class="btn btn-sm btn-gray" type="button" (click)="onCancel();">Cancel</button>
+                <button class="btn btn-sm btn-secondary" type="submit" (click)="onSubmit(newContact)"
+                  [disabled]="!newContact.content">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

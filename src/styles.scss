@@ -1,0 +1,72 @@
+body {
+    font-family: 'Futura', sans-serif !important;
+    background: #f2f5f8!important;
+    font-size: 0.9rem !important;
+}
+
+.form-control {
+    color: #000000 !important;
+}
+
+.form-control:focus {
+    color: #525f7f !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    color: #000000 !important;
+    background: rgb(219, 219, 219) !important;
+}
+
+.navbar-light .navbar-nav .show>.nav-link,
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link.active {
+    color: #DA1921 !important;
+}
+
+.card-header:first-child {
+    border-top-left-radius: 1rem !important;
+    border-top-right-radius: 1rem !important;
+}
+
+.card {
+    border-radius: 1rem !important;
+}
+
+.breadcrumb {
+    background: transparent !important;
+}
+
+.modal-header {
+    border-bottom: 2px solid #525f7f !important;
+}
+
+.cursor-pointer{
+    cursor: pointer !important;
+}
+
+.image-circle {
+    border: 2px solid #e6e6e6;
+    border-radius: 100%;
+    height: 100px;
+    width: 100px;
+}
+
+.icon-button {
+    color: #DA1921;
+    font-size: 1rem !important;
+    padding: 9px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+
+.icon-button:hover {
+    color: #fff;
+    border: 1px solid #DA1921;
+    background-color: #DA1921;
+    padding: 9px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem !important;
+}

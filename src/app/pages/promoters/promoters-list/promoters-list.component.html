@@ -1,0 +1,83 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-xl-12">
+              <h3 class="d-inline-block">Promoters</h3>
+              <button class="btn btn-sm btn-secondary float-right" [routerLink]="['/promoters/create']">
+                <span>Create</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="mt-5 mb-5" *ngIf="promotersList.length == 0">
+            <h3 class="text-center">No Promoter Found</h3>
+          </div>
+          <div class="table-responsive" *ngIf="promotersList.length > 0">
+            <div>
+              <table class="table align-items-center">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">S No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Channel Name</th>
+                    <th scope="col">Profile Image</th>
+                    <th scope="col">Channel Category</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <tr *ngFor="let data of promotersList; let i = index">
+                    <td>{{((page-1) * limit) + (i+1)}}</td>
+                    <td>{{data.fullName}}</td>
+                    <td>{{data.email}}</td>
+                    <td>{{data.channelName}}</td>
+                    <td>
+                      <img src="{{data.profileImage}}" class="image-circle" />
+                    </td>
+                    <td>{{data.channelCategory.name}}</td>
+                    <td>
+                      <button class="btn btn-sm btn-secondary" [routerLink]="['/promoters/'+data._id+'/events']">
+                        <span>View Events</span>
+                      </button>
+                      <button class="btn btn-sm btn-secondary" [routerLink]="['/promoters/'+data._id]">
+                        <span>Update</span>
+                      </button>
+                      <button class="btn btn-sm btn-secondary" (click)="changePassword(data._id);">
+                        <span>Change Password</span>
+                      </button>
+                      <button class="btn btn-sm btn-secondary" (click)="deletePromoter(data._id);">
+                        <span>Delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 row" *ngIf="promotersList.length > 0">
+          <div class="col-2">
+            <select class="form-control height-40" [(ngModel)]="limit"
+            [ngModelOptions]="{standalone: true}" (ngModelChange)="limitChange(limit)">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="25">25</option>
+            <option [ngValue]="50">50</option>
+          </select>
+          </div>
+          <div class="col-10">
+            <ngb-pagination class="float-right" [(page)]="page" [pageSize]="limit" [collectionSize]="totalCount"
+            [maxSize]="2" [boundaryLinks]="true" (pageChange)="pageChange($event)">
+          </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-xl-12">
+              <h3 class="d-inline-block">Media Managers</h3>
+              <button class="btn btn-sm btn-secondary float-right" [routerLink]="['/media-manager/create']">
+                <span>Create</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="mt-5 mb-5" *ngIf="managersList.length == 0">
+            <h3 class="text-center">No Media Manager Found</h3>
+          </div>
+          <div class="table-responsive" *ngIf="managersList.length > 0">
+            <div>
+              <table class="table align-items-center">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">S No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <tr *ngFor="let data of managersList; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{data.fullName}}</td>
+                    <td>{{data.email}}</td>
+                    <td>{{data.phoneNumber}}</td>
+                    <td>{{data.location}}</td>
+                    <td>
+                      <button class="btn btn-sm btn-secondary" [routerLink]="['/media-manager/'+data._id]">
+                        <span>Update</span>
+                      </button>
+                      <button class="btn btn-sm btn-secondary" (click)="deleteManager(data._id);">
+                        <span>Delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
